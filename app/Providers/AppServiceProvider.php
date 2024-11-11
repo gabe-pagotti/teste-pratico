@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\GrupoEconomico;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Route::model('grupo_economico', GrupoEconomico::class);
     }
 }
