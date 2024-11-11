@@ -44,6 +44,11 @@ new class extends Component
                         {{ __('Bandeiras') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.index')" wire:navigate>
+                        {{ __('Unidades') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

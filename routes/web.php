@@ -5,7 +5,11 @@ use App\Livewire\GrupoEconomico\Form as GrupoEconomicoForm;
 use App\Livewire\Bandeira\Form as BandeiraForm;
 use App\Livewire\Bandeira\Index as BandeiraIndex;
 use App\Livewire\GrupoEconomico\Index as GrupoEconomicoIndex;
+use App\Livewire\Unidade\Detail as UnidadeDetail;
+use App\Livewire\Unidade\Form as UnidadeForm;
+use App\Livewire\Unidade\Index as UnidadeIndex;
 use App\Models\Bandeira;
+use App\Models\Unidade;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
@@ -27,5 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/bandeiras/form/{bandeira?}', BandeiraForm::class)->name('bandeiras.form');
     Route::get('/bandeiras/delete/{bandeira}', [BandeiraForm::class, 'destroy'])->name('bandeiras.delete');
     Route::get('/bandeiras/show/{bandeira}', BandeiraDetail::class)->name('bandeiras.show');
+
+    Route::get('/unidades', UnidadeIndex::class)->name("unidades.index");
+    Route::get('/unidades/form/{unidade?}', UnidadeForm::class)->name('unidades.form');
+    Route::get('/unidades/delete/{unidade}', [UnidadeForm::class, 'destroy'])->name('unidades.delete');
+    Route::get('/unidades/show/{unidade}', UnidadeDetail::class)->name('unidades.show');
 });
+
 require __DIR__.'/auth.php';
