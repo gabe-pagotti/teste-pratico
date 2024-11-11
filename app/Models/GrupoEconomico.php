@@ -11,4 +11,9 @@ class GrupoEconomico extends Model
     public $fillable = [
         "nome",
     ];
+
+    public function bandeiras()
+    {
+        return $this->hasMany(Bandeira::class);
+    }
 }
