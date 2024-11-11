@@ -22,6 +22,7 @@ class BandeiraForm extends Form
         $this->bandeira = $bandeira;
 
         $this->nome = $bandeira->nome;
+        $this->grupoEconomico = $bandeira->grupo_economico_id;
     }
 
     public function store()
