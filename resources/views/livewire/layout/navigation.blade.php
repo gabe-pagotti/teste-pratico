@@ -30,11 +30,6 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('grupos_economicos.index')" :active="request()->routeIs('grupos_economicos.index')" wire:navigate>
                         {{ __('Grupos Economicos') }}
                     </x-nav-link>
@@ -47,6 +42,11 @@ new class extends Component
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.index')" wire:navigate>
                         {{ __('Unidades') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('colaboradores.index')" :active="request()->routeIs('colaboradores.index')" wire:navigate>
+                        {{ __('Colaboradores') }}
                     </x-nav-link>
                 </div>
             </div>

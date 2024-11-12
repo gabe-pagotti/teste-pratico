@@ -16,4 +16,14 @@ class Unidade extends Model
     {
         return $this->belongsTo(Bandeira::class);
     }
+
+    public function colaboradores()
+    {
+        return $this->hasMany(Colaborador::class);
+    }
+
+    public function getNomeAttribute()
+    {
+        return $this->attributes['nome_fantasia'];
+    }
 }
