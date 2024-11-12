@@ -4,6 +4,9 @@ use App\Livewire\Bandeira\Detail as BandeiraDetail;
 use App\Livewire\GrupoEconomico\Form as GrupoEconomicoForm;
 use App\Livewire\Bandeira\Form as BandeiraForm;
 use App\Livewire\Bandeira\Index as BandeiraIndex;
+use App\Livewire\Colaborador\Detail as ColaboradorDetail;
+use App\Livewire\Colaborador\Form as ColaboradorForm;
+use App\Livewire\Colaborador\Index as ColaboradorIndex;
 use App\Livewire\GrupoEconomico\Index as GrupoEconomicoIndex;
 use App\Livewire\Unidade\Detail as UnidadeDetail;
 use App\Livewire\Unidade\Form as UnidadeForm;
@@ -15,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+->middleware(['auth', 'verified'])
+->name('dashboard');
+
+Route::redirect('/dashboard', 'grupos_economicos');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -36,6 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/unidades/form/{unidade?}', UnidadeForm::class)->name('unidades.form');
     Route::get('/unidades/delete/{unidade}', [UnidadeForm::class, 'destroy'])->name('unidades.delete');
     Route::get('/unidades/show/{unidade}', UnidadeDetail::class)->name('unidades.show');
+
+    Route::get('/colaboradores', ColaboradorIndex::class)->name("colaboradores.index");
+    Route::get('/colaboradores/form/{colaborador?}', ColaboradorForm::class)->name('colaboradores.form');
+    Route::get('/colaboradores/delete/{colaborador}', [ColaboradorForm::class, 'destroy'])->name('colaboradores.delete');
+    Route::get('/colaboradores/show/{colaborador}', ColaboradorDetail::class)->name('colaboradores.show');
 });
 
 require __DIR__.'/auth.php';
