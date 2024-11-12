@@ -19,4 +19,11 @@ class Bandeira extends Model
     {
         return $this->hasMany(Unidade::class);
     }
+
+    public function delete()
+    {
+        $this->unidades()->delete();
+
+        return parent::delete();
+    }
 }

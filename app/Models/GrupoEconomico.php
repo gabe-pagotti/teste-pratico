@@ -16,4 +16,11 @@ class GrupoEconomico extends Model
     {
         return $this->hasMany(Bandeira::class);
     }
+
+    public function delete()
+    {
+        $this->bandeiras()->delete();
+
+        return parent::delete();
+    }
 }

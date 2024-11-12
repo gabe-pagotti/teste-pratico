@@ -14,6 +14,13 @@ class Detail extends Component
         $this->unidade = $unidade;
     }
 
+    public function delete(Unidade $unidade)
+    {
+        $unidade->delete();
+
+        return $this->redirect('/unidades');
+    }
+
     public function render()
     {
         return view('livewire.unidade.detail');
