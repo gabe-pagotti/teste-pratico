@@ -24,12 +24,7 @@
         <!-- Bandeira -->
         <div>
             <x-input-label for="form.bandeira" :value="__('Bandeira')" />
-            <select wire:model="form.bandeira" id="form.bandeira" class="block mt-1 w-full" name="form.bandeira">
-                <option value="">{{ __("Selecione") }}</option>
-                @foreach($bandeiras as $bandeira)
-                <option value="{{ $bandeira->id }}" @if($form->unidade->bandeira && $form->unidade->bandeira->id == $bandeira->id) selected="true" @endif>{{ $bandeira->nome }}</option>
-                @endforeach
-            </select>
+            <x-select-input wire:model="form.bandeira" id="form.bandeira" class="block mt-1 w-full" name="form.bandeira" :options="$bandeiras" :selected="$form->unidade->bandeira"/>
             <x-input-error :messages="$errors->get('form.bandeira')" class="mt-2" />
         </div>
 

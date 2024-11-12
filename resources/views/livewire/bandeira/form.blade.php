@@ -10,12 +10,7 @@
         <!-- Grupo Economico -->
         <div>
             <x-input-label for="form.grupoEconomico" :value="__('Grupo Economico')" />
-            <select wire:model="form.grupoEconomico" id="form.grupoEconomico" class="block mt-1 w-full" name="form.grupoEconomico">
-                <option value="">{{ __("Selecione") }}</option>
-                @foreach($gruposEconomicos as $grupoEconomico)
-                <option value="{{ $grupoEconomico->id }}" @if($form->bandeira->grupo_economico && $form->bandeira->grupo_economico->id == $grupoEconomico->id) selected="true" @endif>{{ $grupoEconomico->nome }}</option>
-                @endforeach
-            </select>
+            <x-select-input wire:model="form.grupoEconomico" id="form.grupoEconomico" class="block mt-1 w-full" name="form.grupoEconomico" :options="$gruposEconomicos" :selected="$form->bandeira->grupo_economico"/>
             <x-input-error :messages="$errors->get('form.grupoEconomico')" class="mt-2" />
         </div>
 
