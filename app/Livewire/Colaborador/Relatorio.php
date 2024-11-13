@@ -6,6 +6,7 @@ use App\Models\Bandeira;
 use App\Models\Colaborador;
 use App\Models\GrupoEconomico;
 use App\Models\Unidade;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 use function Laravel\Prompts\search;
@@ -25,6 +26,22 @@ class Relatorio extends Component
         $this->unidades = Unidade::all();
         $this->bandeiras = Bandeira::all();
         $this->gruposEconomicos = GrupoEconomico::all();
+    }
+
+    public function exportar() {
+        $colaboradores = $this->getColaboradores();
+
+        $fileContent = '';
+        foreach ($colaboradores as $colaborador) {
+            $fileContent .= implode(';', $colaborador->toArray());
+            $fileContent .= "\n";
+        }
+
+        $fileName = date('YmdHis').'.csv';
+        Storage::disk('public')->put($fileName, $fileContent);
+
+        $filePath = 'storage/'.$fileName;
+        return response()->download($filePath, $fileName)->deleteFileAfterSend(true);
     }
 
     public function render()

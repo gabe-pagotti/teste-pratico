@@ -6,7 +6,7 @@
     </x-slot>
 
     <div>
-        <div class="grid grid-flow-col justify-stretch gap-4 items-center mt-4 mb-4" >
+        <div class="grid grid-flow-col justify-stretch gap-4 items-end mt-4 mb-4" >
             <div>
                 <x-input-label for="busca" :value="__('Pesquisar')" />
                 <x-text-input wire:model.live="busca" id="busca" class="block mt-1 w-full" type="text" name="busca" required autofocus value="{{ $busca }}" />
@@ -26,6 +26,9 @@
                 <x-input-label for="grupoEconomico" :value="__('Grupo Economico')" />
                 <x-select-input wire:model.live="grupoEconomico" id="grupoEconomico" class="block mt-1 w-full" name="grupoEconomico" :options="$gruposEconomicos"/>
                 <x-input-error :messages="$errors->get('grupoEconomico')" class="mt-2" />
+            </div>
+            <div class="pb-0.5">
+            <button type="button" wire:click="exportar" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">{{ __('Exportar') }}</button>
             </div>
         </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
