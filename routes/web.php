@@ -8,6 +8,7 @@ use App\Livewire\Bandeira\Index as BandeiraIndex;
 use App\Livewire\Colaborador\Detail as ColaboradorDetail;
 use App\Livewire\Colaborador\Form as ColaboradorForm;
 use App\Livewire\Colaborador\Index as ColaboradorIndex;
+use App\Livewire\Colaborador\Relatorio;
 use App\Livewire\GrupoEconomico\Index as GrupoEconomicoIndex;
 use App\Livewire\Unidade\Detail as UnidadeDetail;
 use App\Livewire\Unidade\Form as UnidadeForm;
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/colaboradores/show/{colaborador}', ColaboradorDetail::class)->name('colaboradores.show');
 
     Route::get('/auditoria', AuditoriaIndex::class)->name("auditoria.index");
+    Route::get('/relatorio', Relatorio::class)->name("relatorio.index");
 });
 
 require __DIR__.'/auth.php';
