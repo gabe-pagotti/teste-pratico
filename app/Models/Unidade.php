@@ -22,6 +22,16 @@ class Unidade extends Model
         return $this->hasMany(Colaborador::class);
     }
 
+    public function delete()
+    {
+        $colaboradores = $this->colaboradores;
+        foreach ($colaboradores as $colaborador) {
+            $colaborador->delete();
+        }
+
+        return parent::delete();
+    }
+
     public function getNomeAttribute()
     {
         return $this->attributes['nome_fantasia'];

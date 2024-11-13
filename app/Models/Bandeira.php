@@ -22,7 +22,10 @@ class Bandeira extends Model
 
     public function delete()
     {
-        $this->unidades()->delete();
+        $unidades = $this->unidades;
+        foreach ($unidades as $unidade) {
+            $unidade->delete();
+        }
 
         return parent::delete();
     }

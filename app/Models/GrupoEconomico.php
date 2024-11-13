@@ -19,7 +19,10 @@ class GrupoEconomico extends Model
 
     public function delete()
     {
-        $this->bandeiras()->delete();
+        $bandeiras = $this->bandeiras;
+        foreach ($bandeiras as $bandeira) {
+            $bandeira->delete();
+        }
 
         return parent::delete();
     }
