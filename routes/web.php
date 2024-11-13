@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auditoria\Index as AuditoriaIndex;
 use App\Livewire\Bandeira\Detail as BandeiraDetail;
 use App\Livewire\GrupoEconomico\Form as GrupoEconomicoForm;
 use App\Livewire\Bandeira\Form as BandeiraForm;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/colaboradores/form/{colaborador?}', ColaboradorForm::class)->name('colaboradores.form');
     Route::get('/colaboradores/delete/{colaborador}', [ColaboradorForm::class, 'destroy'])->name('colaboradores.delete');
     Route::get('/colaboradores/show/{colaborador}', ColaboradorDetail::class)->name('colaboradores.show');
+
+    Route::get('/auditoria', AuditoriaIndex::class)->name("auditoria.index");
 });
 
 require __DIR__.'/auth.php';

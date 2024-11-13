@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Bandeira;
-use App\Models\GrupoEconomico;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -38,6 +37,11 @@ class BandeiraForm extends Form
 
         $this->bandeira->grupo_economico_id = $this->grupoEconomico;
 
-        $this->bandeira->fill($this->all())->save();
+        $this->bandeira->fill($this->all());
+    }
+
+    public function save()
+    {
+        $this->bandeira->save();
     }
 }

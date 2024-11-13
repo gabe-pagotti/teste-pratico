@@ -50,6 +50,11 @@ class UnidadeForm extends Form
 
         $this->unidade->bandeira_id = $this->bandeira;
 
-        $this->unidade->fill($this->all())->save();
+        $this->unidade->fill($this->all());
+    }
+
+    public function save()
+    {
+        $this->unidade->save();
     }
 }

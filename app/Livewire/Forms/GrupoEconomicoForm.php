@@ -31,6 +31,11 @@ class GrupoEconomicoForm extends Form
     {
         $this->validate();
 
-        $this->grupoEconomico->fill($this->all())->save();
+        $this->grupoEconomico->fill($this->all());
+    }
+
+    public function save()
+    {
+        $this->grupoEconomico->save();
     }
 }

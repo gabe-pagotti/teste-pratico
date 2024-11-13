@@ -55,6 +55,11 @@ class ColaboradorForm extends Form
 
         $this->colaborador->unidade_id = $this->unidade;
 
-        $this->colaborador->fill($this->all())->save();
+        $this->colaborador->fill($this->all());
+    }
+
+    public function save()
+    {
+        $this->colaborador->save();
     }
 }
