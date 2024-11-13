@@ -10,7 +10,7 @@
             <a class="underline dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('bandeiras.form', $bandeira->id) }}" wire:navigate>
                 <img src="{{ asset('storage/icon-edit.svg') }}" class="w-6 h-6">
             </a>
-            <button type="button" wire:click="delete({{$bandeira->id}})" wire:confirm="Are you sure you want to delete this post?">
+            <button type="button" wire:click="delete({{$bandeira->id}})" wire:confirm="Tem certeza que deseja excluir essa bandeira?">
                 <img src="{{ asset('storage/icon-delete.svg') }}" class="w-6 h-6">
             </button>
         </div>
