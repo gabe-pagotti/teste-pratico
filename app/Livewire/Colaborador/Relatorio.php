@@ -8,11 +8,12 @@ use App\Models\GrupoEconomico;
 use App\Models\Unidade;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-
-use function Laravel\Prompts\search;
+use Livewire\WithPagination;
 
 class Relatorio extends Component
 {
+    use WithPagination;
+
     public $busca;
     public $unidades;
     public $bandeiras;
@@ -29,7 +30,7 @@ class Relatorio extends Component
     }
 
     public function exportar() {
-        $colaboradores = $this->getColaboradores();
+        $colaboradores = $this->getColaboradoresQuery()->get();
 
         $fileContent = '';
         foreach ($colaboradores as $colaborador) {
@@ -47,11 +48,11 @@ class Relatorio extends Component
     public function render()
     {
         return view('livewire.colaborador.relatorio',[
-            'colaboradores' => $this->getColaboradores(),
+            'colaboradores' => $this->getColaboradoresQuery()->paginate(5),
         ]);
     }
 
-    protected function getColaboradores()
+    protected function getColaboradoresQuery()
     {
         $colaboradoresQuery = Colaborador::select('colaboradores.nome', 'colaboradores.email', 'colaboradores.id', 'colaboradores.cpf', 'unidades.nome_fantasia as unidade', 'bandeiras.nome as bandeira', 'grupos_economicos.nome as grupo_economico')
                                     ->join('unidades', 'unidades.id', '=', 'colaboradores.unidade_id')
@@ -77,6 +78,6 @@ class Relatorio extends Component
             $colaboradoresQuery = $colaboradoresQuery->where('grupos_economicos.id', $this->grupoEconomico);
         }
 
-        return $colaboradoresQuery->get();
+        return $colaboradoresQuery;
     }
 }

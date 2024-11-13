@@ -44,4 +44,5 @@
             </tbdody>
         </table>
     </div>
+    {{ $unidades->links() }}
 </div>

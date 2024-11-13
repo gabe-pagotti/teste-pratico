@@ -5,16 +5,13 @@ namespace App\Livewire\GrupoEconomico;
 use app\Repositorios\Auditoria;
 use App\Models\GrupoEconomico;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $gruposEconomicos;
-    protected $auditoria;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->updateGruposEconomicos();
-    }
+    protected $auditoria;
 
     public function boot(Auditoria $auditoria)
     {
@@ -26,17 +23,10 @@ class Index extends Component
         $this->auditoria->delete($grupoEconomico);
 
         $grupoEconomico->delete();
-
-        $this->updateGruposEconomicos();
-    }
-
-    protected function updateGruposEconomicos()
-    {
-        $this->gruposEconomicos = GrupoEconomico::all();
     }
 
     public function render()
     {
-        return view('livewire.grupo-economico.index');
+        return view('livewire.grupo-economico.index', ['gruposEconomicos' => GrupoEconomico::paginate(5)]);
     }
 }

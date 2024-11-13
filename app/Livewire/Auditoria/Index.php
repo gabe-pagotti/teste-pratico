@@ -4,18 +4,14 @@ namespace App\Livewire\Auditoria;
 
 use App\Models\Auditoria;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $logs;
-
-    public function mount()
-    {
-        $this->logs = Auditoria::all();
-    }
+    use WithPagination;
 
     public function render()
     {
-        return view('livewire.auditoria.index');
+        return view('livewire.auditoria.index', ['logs' => Auditoria::paginate(5)]);
     }
 }

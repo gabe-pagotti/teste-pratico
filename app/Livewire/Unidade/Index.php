@@ -5,16 +5,13 @@ namespace App\Livewire\Unidade;
 use App\Models\Unidade;
 use app\Repositorios\Auditoria;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $unidades;
-    protected $auditoria;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->updateUnidades();
-    }
+    protected $auditoria;
 
     public function boot(Auditoria $auditoria)
     {
@@ -26,17 +23,10 @@ class Index extends Component
         $this->auditoria->delete($unidade);
 
         $unidade->delete();
-
-        $this->updateUnidades();
-    }
-
-    protected function updateUnidades()
-    {
-        $this->unidades = Unidade::all();
     }
 
     public function render()
     {
-        return view('livewire.unidade.index');
+        return view('livewire.unidade.index', ['unidades' => Unidade::paginate(5)]);
     }
 }

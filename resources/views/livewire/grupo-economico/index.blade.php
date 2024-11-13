@@ -17,7 +17,7 @@
                 <th scope="col" class="px-6 py-3">{{ __("Ações") }}</td>
             </thead>
             <tbdody>
-                @foreach($gruposEconomicos as $grupoEconomico)
+                @forelse($gruposEconomicos as $grupoEconomico)
                 <tr wire:key="{{ $grupoEconomico->id }}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $grupoEconomico->id }}</th>
                     <td class="px-6 py-4">{{ $grupoEconomico->nome }}</td>
@@ -31,8 +31,13 @@
                         </button>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" colspan="4">{{ __('Nenhum registro') }}</th>
+                </tr>
+                @endforelse
             </tbdody>
         </table>
     </div>
+    {{ $gruposEconomicos->links() }}
 </div>

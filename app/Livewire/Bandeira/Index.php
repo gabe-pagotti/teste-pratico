@@ -5,16 +5,13 @@ namespace App\Livewire\Bandeira;
 use app\Repositorios\Auditoria;
 use App\Models\Bandeira;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $bandeiras;
-    protected $auditoria;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->updateBandeiras();
-    }
+    protected $auditoria;
 
     public function boot(Auditoria $auditoria)
     {
@@ -26,17 +23,10 @@ class Index extends Component
         $this->auditoria->delete($bandeira);
 
         $bandeira->delete();
-
-        $this->updateBandeiras();
-    }
-
-    protected function updateBandeiras()
-    {
-        $this->bandeiras = Bandeira::all();
     }
 
     public function render()
     {
-        return view('livewire.bandeira.index');
+        return view('livewire.bandeira.index', ['bandeiras' => Bandeira::paginate(5)]);
     }
 }

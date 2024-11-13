@@ -18,7 +18,7 @@
                 <th scope="col" class="px-6 py-3">{{ __("Ações") }}</td>
             </thead>
             <tbdody>
-                @foreach($bandeiras as $bandeira)
+                @forelse($bandeiras as $bandeira)
                 <tr wire:key="{{ $bandeira->id }}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $bandeira->id }}</th>
                     <td class="px-6 py-4">{{ $bandeira->nome }}</td>
@@ -36,8 +36,13 @@
                         </button>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" colspan="5">{{ __('Nenhum registro') }}</th>
+                </tr>
+                @endforelse
             </tbdody>
         </table>
     </div>
+    {{ $bandeiras->links() }}
 </div>

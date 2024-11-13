@@ -16,7 +16,7 @@
                 <th scope="col" class="px-6 py-3">{{ __("Data de Criação") }}</td>
             </thead>
             <tbdody>
-                @foreach($logs as $log)
+                @forelse($logs as $log)
                 <tr wire:key="{{ $log->id }}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $log->id }}</th>
                     <td class="px-6 py-4">{{ $log->user->name }}</td>
@@ -25,8 +25,13 @@
                     <td class="px-6 py-4">{!! $log->alteracoes !!}</td>
                     <td class="px-6 py-4">{{ $log->created_at->format("d/m/Y H:i:s") }}</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" colspan="6">{{ __('Nenhum registro') }}</th>
+                </tr>
+                @endforelse
             </tbdody>
         </table>
     </div>
+    {{ $logs->links() }}
 </div>
